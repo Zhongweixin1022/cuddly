@@ -444,9 +444,9 @@
 
     <!-- ============ 入口页 ============ -->
     <div class="gate-screen" id="gateScreen">
-        <img class="lulu-img" src="./lulu.jpg" alt="lulu">
+        <img class="lulu-img" src="img/lumei.jpg" alt="lulu">
         <div class="welcome-title">
-            🎂 嘿嘿嘿 小虫虫<Br>
+            🎂 小虫虫 宝贝<Br>
         </div>
         <button class="enter-btn" id="enterBtn">GO ~</button>
     </div>
@@ -454,8 +454,8 @@
     <!-- ============ 答题页 ============ -->
     <div class="quiz-screen" id="quizScreen">
         <div class="quiz-header">
-            <span class="title">🎈 生日小问卷</span>
-            <span class="progress-text" id="progressText">1 / 20</span>
+            <span class="title">🎈 生日快乐呀</span>
+            <span class="progress-text" id="progressText">1 / 22</span>
         </div>
 
         <div class="text-center">
@@ -468,8 +468,8 @@
 
             <!-- 自定义答题区 -->
             <div class="custom-answer hidden" id="customAnswerArea">
-                <div class="custom-tip">✏️ 考考你 </div>
-                <textarea id="customInput" rows="2" maxlength="200"
+                <div class="custom-tip">✏️ 写下你的想法 </div>
+                <textarea id="customInput" rows="2" maxlength="300"
                           placeholder="写在这里…（按回车或点确认提交）"></textarea>
                 <div class="custom-btns">
                     <button class="btn btn-prev" id="customCancelBtn">取消</button>
@@ -479,7 +479,7 @@
 
             <div class="feedback" id="feedbackArea">
                 <span class="icon">💡</span>
-                <span id="feedbackMsg">选一个最像你的答案吧～</span>
+                <span id="feedbackMsg">小试牛刀～</span>
             </div>
         </div>
 
@@ -500,7 +500,7 @@
             <span class="big-icon">🎂</span>
             <div class="modal-title">生日快乐！</div>
             <div class="modal-body">
-            🎉<br>答完会有惊喜哦～
+            🎉<br>嗨皮啵丝得涂油～
             </div>
             <button class="modal-btn" id="introBtn">好呀，开始 👉</button>
         </div>
@@ -536,32 +536,45 @@ if (window.emailjs) {
 }
 
 /* ================================================================
- *  20 道题（前 5 轻松，后 15 地理）
+ *  题目列表（前6道为主观和选择题，后16道为初中/高中地理题）
  * ================================================================ */
 const questions = [
-    // ===== 1-5 轻松一刻 =====
-    { question: '你此刻的心情是？', options: ['🎉 超级开心！', '😌 平平淡淡才是真', '🥲 又老了一岁呜呜', '😎 我永远十八岁'], tag: '轻松' },
-    { question: '你觉得今天最不能少的是？', options: ['🎂 蛋糕', '🎁 礼物', '🍜 一顿好吃的', '😄 有人陪我'], tag: '轻松' },
-    { question: '你有什么优点？', options: [ '善良', '真诚','有责任感','体贴'], tag: '轻松' },
-    { question: '你喜欢我怎么叫你？', options: ['A', 'B', 'C', 'D'], tag: '轻松' },
-    { question: '你最喜欢怎么叫我？', options: ['A钟玮欣', 'B喂', 'C哎', 'D啊'], tag: '轻松' },
+    // ===== 1-5 纯主观题 =====
+    { question: '你最近最烦恼的事情是什么？', tag: '主观' },
+    { question: '你最期待的事情是什么？', tag: '主观' },
+    { question: '如果今天让你选一顿最开心的饭，你会选择吃什么？', tag: '主观' },
+    { question: '你现在最害怕失去什么？', tag: '主观' },
+    { question: '如果你可以改变生活里的一件事，你最想改变什么？', tag: '主观' },
+    
+    // ===== 第6题 选择题+主观补充 =====
+    { 
+        question: '你认为最浪漫的事是？', 
+        options: [
+            '在暴风雨的夜晚，共享一杯热茶', 
+            '一场说走就走的未知冒险', 
+            '读懂对方一个眼神里从未说出口的话', 
+            '共同创造一个只属于我们的伟大的作品'
+        ], 
+        tag: '轻松' 
+    },
 
-    // ===== 6-20 初中地理 =====
+    // ===== 7-22 初中地理与高中地理（共16题） =====
     { question: '地球公转产生的现象是？', options: ['🌞 昼夜交替', '🌍 四季变化', '🌊 潮汐现象', '🌪️ 季风形成'], tag: '地理', answer: 1 },
-    { question: '世界上面积最大的大洋是？', options: ['大西洋', '印度洋', '太平洋', '北冰洋'], tag: '地理', answer: 2 },
-    { question: '我国面积最大的岛屿是？', options: ['海南岛', '台湾岛', '崇明岛', '舟山岛'], tag: '地理', answer: 1 },
-    { question: '地球自转的方向是？', options: ['自东向西', '自西向东', '自南向北', '自北向南'], tag: '地理', answer: 1 },
-    { question: '我国最长的河流是？', options: ['黄河', '珠江', '长江', '黑龙江'], tag: '地理', answer: 2 },
-    { question: '亚洲和非洲的分界线是？', options: ['巴拿马运河', '苏伊士运河', '白令海峡', '乌拉尔山脉'], tag: '地理', answer: 1 },
+    { question: '沿海地区早上吹的是什么风（海陆热力性质差异）？', options: ['海风', '抽风', '大风', '陆风'], tag: '地理', answer: 0},
     { question: '我国地势的总特征是？', options: ['东高西低', '西高东低，呈阶梯状', '南高北低', '北高南低'], tag: '地理', answer: 1 },
-    { question: '世界上面积最大的沙漠是？', options: ['塔克拉玛干沙漠', '撒哈拉沙漠', '戈壁沙漠', '阿拉伯沙漠'], tag: '地理', answer: 1 },
-    { question: '世界上人口最多的大洲是？', options: ['非洲', '欧洲', '亚洲', '南美洲'], tag: '地理', answer: 2 },
-    { question: '被称为“世界屋脊”的高原是？', options: ['云贵高原', '青藏高原', '内蒙古高原', '黄土高原'], tag: '地理', answer: 1 },
-    { question: '我国季风气候显著，夏季主要盛行？', options: ['偏北风', '偏南风', '偏西风', '偏东风'], tag: '地理', answer: 1 },
-    { question: '在等高线地形图上，等高线密集的地方表示？', options: ['坡陡', '坡缓', '山谷', '山脊'], tag: '地理', answer: 0 },
-    { question: '地球上最长的纬线是？', options: ['北回归线', '南回归线', '赤道', '极圈'], tag: '地理', answer: 2 },
-    { question: '我国少数民族分布最多的省份是？', options: ['广西', '新疆', '云南', '西藏'], tag: '地理', answer: 2 },
-    { question: '一天中最高气温通常出现在？', options: ['正午12点', '午后2点左右', '日出前后', '傍晚6点'], tag: '地理', answer: 1 }
+    { question: '你和我的分界线是？', options: ['国界', '省界', '市界', '县界'], tag: '地理', answer: 2 },
+    { question: '以下哪个时间白天时间短，夜晚时间长（昼短夜长）？', options: ['春分', '夏至', '秋分', '冬至'], tag: '地理', answer: 3 },
+    { question: '你对我付出的一切是心甘情愿的吗？', options: ['心不甘', '情不愿', 'YES', 'NO'], tag: '地理', answer: 3 },
+    { question: '当晨昏线与极圈相切，且北京昼长夜短时，下列说法正确的是？', options: ['地球公转速度逐渐加快', '北印度洋洋流呈逆时针方向流动', '巴西高原草木枯黄', '悉尼正午太阳高度达一年中最大值'], tag: '地理', answer: 2 },
+    { question: '形成风的直接原因是？', options: ['水平气压梯度力', '地转偏向力', '摩擦力', '惯性离心力'], tag: '地理', answer: 0 },
+    { question: '暖流对沿岸气候的影响是？', options: ['降温减湿', '增温增湿', '降温增湿', '增温减湿'], tag: '地理', answer: 1 },
+    { question: '你知道我喜欢花吗？荷兰发展外向型花卉种植业，其决定性区位因素是？', options: ['气候温和湿润', '地势平坦开阔', '国际市场广阔', '交通便利和保鲜技术'], tag: '地理', answer: 3 },
+    { question: '城市热岛效应的主要成因是？', options: ['城市绿地多', '城市人口密集、工业发达，人为热排放多', '城市水域面积大', '城市建筑物稀疏'], tag: '地理', answer: 1 },
+    { question: '某地背斜成谷的原因通常是？', options: ['槽部受张力，岩石破碎易被侵蚀', '顶部受挤压，岩石致密不易侵蚀', '顶部受张力，岩石破碎易被侵蚀', '槽部受挤压，岩层下陷'], tag: '地理', answer: 2 },
+    { question: '地壳运动的主要形式是？', options: ['水平运动', '垂直运动', '岩浆活动', '变质作用'], tag: '地理', answer: 0 },
+    { question: '在等高线地形图上，若某地等高线向高处凸出，则该地地形部位是？', options: ['山脊', '山谷', '鞍部', '陡崖'], tag: '地理', answer: 1 },
+    { question: '岩石圈的物质循环中，岩浆岩只能由什么转化而来？', options: ['沉积岩', '变质岩', '岩浆', '碎屑物'], tag: '地理', answer: 2 },
+    { question: '你和我在一起的时候是什么样的心情？', options: ['紧张', '激动', '害怕', '另有心思'], tag: '地理', answer: 0 }
 ];
 
 /* ================================================================
@@ -573,7 +586,7 @@ const wishQueue = [
     { icon: '🤗', title: '宝宝抱抱', body: '抱紧一点~' },
     { icon: '🤗', title: '抱抱宝宝', body: '不撒手啦~' },
     { icon: '🥰', title: '宝宝贴贴', body: '蹭蹭~' },
-    { icon: '😜', title: '略略略~', body: '就不告诉你~' }
+    { icon: '😜', title: '略略略~', body: '来打我撒~' }
 ];
 
 /* ================================================================
@@ -630,7 +643,6 @@ function sendEmail(question, answer) {
             console.log('✅ 邮件发送成功!', response.status, response.text);
         }, function(error) {
             console.error('❌ 邮件发送失败...', error);
-            // 如果报错，在网页上提示一下（方便你排查问题）
             alert('邮件发送失败，请检查 EmailJS 配置。\n错误信息: ' + JSON.stringify(error));
         });
 }
@@ -701,14 +713,14 @@ function renderQuestion() {
 
     questionText.textContent = q.question;
 
-    if (q.tag === '轻松') {
+    if (q.tag === '主观') {
+        difficultyLabel.textContent = '💗 走心一问';
+        difficultyLabel.className = 'difficulty-label hard';
+    } else if (q.tag === '轻松') {
         difficultyLabel.textContent = '🎈 轻松一刻';
         difficultyLabel.className = 'difficulty-label easy';
     } else if (q.tag === '地理') {
         difficultyLabel.textContent = '🌍 地理小知识';
-        difficultyLabel.className = 'difficulty-label hard';
-    } else {
-        difficultyLabel.textContent = '💗 走心一问';
         difficultyLabel.className = 'difficulty-label hard';
     }
 
@@ -717,35 +729,64 @@ function renderQuestion() {
     const locked = isTransitioning; 
     let html = '';
 
-    q.options.forEach(function (opt, idx) {
-        const sel = (chosen && chosen.index === idx) ? 'selected' : '';
-        const lk  = locked ? 'locked' : '';
-        html += '<div class="option ' + sel + ' ' + lk + '" ' +
-                'onclick="selectOption(' + idx + ')">' +
-                  '<span class="letter">' + letters[idx] + '</span>' + opt +
-                '</div>';
-    });
+    // 检查该题是否有选项
+    if (q.options && q.options.length > 0) {
+        q.options.forEach(function (opt, idx) {
+            const sel = (chosen && chosen.index === idx) ? 'selected' : '';
+            const lk  = locked ? 'locked' : '';
+            html += '<div class="option ' + sel + ' ' + lk + '" ' +
+                    'onclick="selectOption(' + idx + ')">' +
+                      '<span class="letter">' + letters[idx] + '</span>' + opt +
+                    '</div>';
+        });
 
-    if (q.tag !== '地理') {
-        const otherIdx = q.options.length;
-        const otherSel = (chosen && chosen.index === -1) ? 'selected' : '';
-        const otherLk  = locked ? 'locked' : '';
-        html += '<div class="option option-other ' + otherSel + ' ' + otherLk + '" ' +
-                'onclick="selectOption(' + otherIdx + ')">' +
-                  '<span class="letter">✏️</span>以上都不是，我自己写' +
-                '</div>';
-    }
+        // 针对非地理题追加“以上都不是”选项
+        if (q.tag !== '地理') {
+            const otherIdx = q.options.length;
+            const otherSel = (chosen && chosen.index === -1) ? 'selected' : '';
+            const otherLk  = locked ? 'locked' : '';
+            html += '<div class="option option-other ' + otherSel + ' ' + otherLk + '" ' +
+                    'onclick="selectOption(' + otherIdx + ')">' +
+                      '<span class="letter">✏️</span>以上都不是，我自己写' +
+                    '</div>';
+        }
+        optionsContainer.innerHTML = html;
 
-    optionsContainer.innerHTML = html;
-
-    if (chosen !== undefined) {
-        feedbackArea.className = 'feedback success';
-        feedbackArea.querySelector('.icon').textContent = '✅';
-        feedbackMsg.textContent = isTransitioning ? '答对啦！' : '答对啦！（可重新选择修改）';
+        if (chosen !== undefined) {
+            feedbackArea.className = 'feedback success';
+            feedbackArea.querySelector('.icon').textContent = '✅';
+            feedbackMsg.textContent = isTransitioning ? '答对啦！' : '答对啦！（可重新选择修改）';
+        } else {
+            feedbackArea.className = 'feedback';
+            feedbackArea.querySelector('.icon').textContent = '💡';
+            feedbackMsg.textContent = '选一个最适合的答案吧～';
+        }
     } else {
-        feedbackArea.className = 'feedback';
-        feedbackArea.querySelector('.icon').textContent = '💡';
-        feedbackMsg.textContent = '选一个最像你的答案吧～';
+        // ===== 纯主观题（无选项）=====
+        optionsContainer.innerHTML = '';
+        
+        if (chosen !== undefined) {
+            // ⭐ 已作答：不再自动弹出输入框，而是显示“修改”按钮
+            feedbackArea.className = 'feedback success';
+            feedbackArea.querySelector('.icon').textContent = '✅';
+            feedbackMsg.textContent = isTransitioning ? '答对啦！' : '已作答（可点击下方修改）';
+            
+            html = '<div class="option option-other" onclick="openCustomInput()">' +
+                   '<span class="letter">✏️</span>点击修改答案' +
+                   '</div>';
+            optionsContainer.innerHTML = html;
+        } else {
+            // 未作答：正常弹出输入框
+            feedbackArea.className = 'feedback';
+            feedbackArea.querySelector('.icon').textContent = '💡';
+            feedbackMsg.textContent = '写下你的答案吧～';
+            
+            setTimeout(function() {
+                if (currentQ === questions.indexOf(q)) {
+                    openCustomInput();
+                }
+            }, 10);
+        }
     }
 
     updateButtons();
@@ -796,8 +837,8 @@ function commitAnswer(ansObj) {
     const q = questions[currentQ];
     const fromIndex = currentQ;
 
-    // ⭐ 只发前 5 道题的邮件
-    if (currentQ < 5) {
+    // ⭐ 只发前 6 道题的邮件
+    if (currentQ < 6) {
         sendEmail(q.question, ansObj.text);
     }
 
